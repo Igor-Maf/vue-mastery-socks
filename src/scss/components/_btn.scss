@@ -1,0 +1,21 @@
+.btn {
+  border: none;
+  cursor: pointer;
+
+  &--clear {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  &--action {
+    background-color: $green;
+    color: #fff;
+    padding: .5em 16px;
+    font-size: 1em;
+
+    &:hover,
+    &:focus {
+      background-color: darken($green, 5);
+    }
+  }
+}

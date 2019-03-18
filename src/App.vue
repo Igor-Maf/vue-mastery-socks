@@ -11,7 +11,7 @@
 </template>
 
 <style lang="scss">
-  @import "scss/variables", "scss/common", "scss/helpers";
+  @import "scss/variables", "scss/common", "scss/helpers", "scss/components/btn", "scss/components/badge";
 
   .app,
   .content {

@@ -1,0 +1,9 @@
+.badge {
+  padding: .5em 8px;
+
+  &--success {
+    background-color: $green;
+    color: #fff;
+    font-style: italic;
+  }
+}
