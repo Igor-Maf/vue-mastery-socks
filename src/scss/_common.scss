@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -9,8 +13,25 @@ ul {
   padding-left: 16px;
 }
 
-img {
+img,
+textarea {
   max-width: 100%;
+}
+
+h1,
+h2 {
+  margin: {
+    top: 0;
+    bottom: .5em;
+  }
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.4em;
 }
 
 small {
@@ -24,4 +45,32 @@ a {
   &:focus {
     color: darken($blue, 10);
   }
+}
+
+label {
+  font-size: 14px;
+  color: lighten($dark-grey, 20);
+}
+
+input {
+  border: {
+    style: solid;
+    width: 1px;
+  }
+}
+
+input,
+textarea {
+  padding: .5em 8px;
+  border-color: darken($light-grey, 10);
+  color: lighten($dark-grey, 20);
+  font: {
+    family: inherit;
+    size: 12px;
+  }
+}
+
+textarea {
+  min-width: 150px;
+  min-height: 5em;
 }

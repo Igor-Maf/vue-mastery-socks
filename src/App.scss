@@ -1,0 +1,31 @@
+@import
+  "scss/variables",
+  "scss/common",
+  "scss/helpers",
+  "scss/components/btn",
+  "scss/components/badge",
+  "scss/components/form";
+
+.app,
+.content {
+  margin-top: 2em;
+}
+
+.cart {
+  padding: 1em 20px;
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-between;
+  border: {
+    width: 1px;
+    style: solid;
+  };
+
+  &--has-product {
+    border-color: darken($light-grey, 10);
+  }
+
+  &--is-empty {
+    border-color: $light-grey;
+  }
+}

@@ -6,15 +6,14 @@
       <router-link to="/product">Product</router-link>
     </nav>
 
-    <router-view />
+    <div class="cart" :class="[cart > 0 ? 'cart--has-product' : 'cart--is-empty']">
+      <span>Cart</span>
+      <strong>{{ cart }}</strong>
+    </div>
+
+    <router-view @add-to-cart="addToCart" />
   </div>
 </template>
 
-<style lang="scss">
-  @import "scss/variables", "scss/common", "scss/helpers", "scss/components/btn", "scss/components/badge";
-
-  .app,
-  .content {
-    margin-top: 2em;
-  }
-</style>
+<style src="./App.scss" lang="scss"></style>
+<script src="./App.js"></script>

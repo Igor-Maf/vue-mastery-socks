@@ -1,0 +1,18 @@
+.form {
+  &__row {
+    margin-bottom: 1em;
+  }
+
+  &--default {
+    label {
+      margin-bottom: .3em;
+      display: block;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      display: block;
+    }
+  }
+}

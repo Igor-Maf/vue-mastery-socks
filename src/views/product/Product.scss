@@ -1,29 +1,14 @@
-@import "../scss/variables", "../scss/extends";
-
-.cart {
-  padding: 1em 20px;
-  margin-top: 1em;
-  display: flex;
-  justify-content: space-between;
-  border: {
-    width: 1px;
-    style: solid;
-  };
-
-  &--has-product {
-    border-color: darken($light-grey, 10);
-  }
-
-  &--is-empty {
-    border-color: $light-grey;
-  }
-}
+@import "../../scss/variables", "../../scss/extends";
 
 .product {
   width: 700px;
   margin: 0 auto;
-  display: flex;
-  align-items: flex-start;
+
+  &__content {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2em;
+  }
 
   &__image {
     @extend %center;
@@ -56,6 +41,21 @@
     img {
       vertical-align: middle;
       line-height: 100%;
+    }
+  }
+}
+
+.reviews {
+  &__item {
+    font-size: 14px;
+    margin-bottom: 1em;
+  }
+
+  &__text {
+    color: lighten($dark-grey, 40);
+    margin: {
+      top: 0;
+      bottom: 0;
     }
   }
 }

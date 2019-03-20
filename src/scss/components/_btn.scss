@@ -18,4 +18,9 @@
       background-color: darken($green, 5);
     }
   }
+
+  &:disabled {
+     background-color: darken($light-grey, 10);
+    cursor: not-allowed;
+  }
 }
