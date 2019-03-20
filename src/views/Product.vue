@@ -6,7 +6,7 @@
             </section>
 
             <main class="product__info">
-                <h1>{{ title }}</h1>
+                <h1>{{ pageTitle }}</h1>
 
                 <p class="h-text-secondary">
                     <span v-if="quantity > 10" class="h-color-green">In Stock</span>
@@ -39,95 +39,20 @@
                         type="button"
                         class="btn btn--action"
                         @click="addToCart"
+                        :disabled="quantity <= 0"
                     >
                         Add to Cart
                     </button>
 
-                    <p>Cart({{ cart }})</p>
+                    <div class="cart" :class="[cart > 0 ? 'cart--has-product' : 'cart--is-empty']">
+                        <span>Cart</span>
+                        <strong>{{ cart }}</strong>
+                    </div>
                 </div>
             </main>
         </section>
     </div>
 </template>
 
-<style lang="scss" scoped>
-    @import "../scss/variables", "../scss/extends";
-
-    .product {
-        width: 600px;
-        margin: 0 auto;
-        display: flex;
-        align-items: flex-start;
-
-        &__image {
-            @extend %center;
-
-            height: 300px;
-            width: 300px;
-            padding: 1em 20px;
-            border: 1px solid $light-grey;
-            margin-right: 20px;
-        }
-    }
-
-    .type-switcher {
-        display: flex;
-        width: fit-content;
-        border: 1px solid $light-grey;
-
-        &__item {
-            height: 36px;
-            width: 36px;
-
-            &:not(:last-child) {
-                border-right: 1px solid $light-grey;
-            }
-        }
-
-        &__btn {
-            padding: 4px;
-
-            img {
-                vertical-align: middle;
-                line-height: 100%;
-            }
-        }
-    }
-</style>
-
-<script>
-    export default {
-        name: 'product',
-        data: () => ({
-            title: 'Socks',
-            type: 'vue',
-            quantity: 11,
-            sale: true,
-            details: [
-                '80% cotton',
-                '20% polyester',
-                'Gender-female'
-            ],
-            variants: [
-                {
-                    id: 1,
-                    type: 'vue'
-                },
-                {
-                    id: 2,
-                    type: 'angular'
-                }
-            ],
-            cart: 0
-        }),
-        methods: {
-            addToCart() {
-                this.cart += 1;
-            },
-            toggleProduct(type) {
-                this.type = type;
-            }
-        }
-    }
-</script>
-
+<style src="./Product.scss" lang="scss" scoped></style>
+<script src="./Product.js"></script>
