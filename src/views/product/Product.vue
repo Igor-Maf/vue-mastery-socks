@@ -48,23 +48,31 @@
                 </main>
             </section>
 
-            <section class="reviews">
-                <h2>Reviews</h2>
+            <tabs :tabs="tabs" :selectedTab="reviews.length ? 'reviews' : 'make-review'">
+                <template slot="reviews">
+                    <section class="reviews">
+                        <h2>Reviews</h2>
 
-                <ul class="h-list-unstyled" v-if="reviews.length">
-                    <li v-for="(review, index) in reviews" :key="index" class="reviews__item">
-                        <div>
-                            <strong>{{ review.name }}</strong> - <span>{{ review.rating }}</span>
-                        </div>
+                        <ul class="h-list-unstyled" v-if="reviews.length">
+                            <li v-for="(review, index) in reviews" :key="index" :id="index" class="reviews__item">
+                                <div>
+                                    <strong>{{ review.name }}</strong> - <span>{{ review.rating }}</span>
+                                </div>
 
-                        <p class="reviews__text">{{ review.review }}</p>
-                    </li>
-                </ul>
+                                <p class="reviews__text">{{ review.review }}</p>
+                            </li>
+                        </ul>
 
-                <p v-else class="h-text-secondary">Add first review!</p>
-            </section>
+                        <p class="h-text-secondary" v-else>
+                            Go to <strong>Make a Review</strong> and add your first review!
+                        </p>
+                    </section>
+                </template>
 
-            <product-review @new-review="addReview"></product-review>
+                <template slot="make-review">
+                    <product-review @new-review="addReview"></product-review>
+                </template>
+            </tabs>
         </section>
     </div>
 </template>

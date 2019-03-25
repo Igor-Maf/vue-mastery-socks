@@ -33,11 +33,13 @@
 <script>
     export default {
         name: 'product-review',
-        data: () => ({
-            name: null,
-            review: null,
-            rating: 5
-        }),
+        data() {
+            return {
+                name: null,
+                review: null,
+                rating: 5
+            }
+        },
         methods: {
             submit() {
                 const {name, review, rating} = this;
