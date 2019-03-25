@@ -11,20 +11,19 @@
   }
 
   &__image {
-    @extend %center;
+    @extend %center, %lg-padding, %based-border;
 
     height: 300px;
     width: 300px;
-    padding: 1em 20px;
-    border: 1px solid $light-grey;
     margin-right: 20px;
   }
 }
 
 .type-switcher {
+  @extend %based-border;
+
   display: flex;
   width: fit-content;
-  border: 1px solid $light-grey;
 
   &__item {
     height: 36px;

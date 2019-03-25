@@ -61,7 +61,8 @@ input {
 
 input,
 textarea {
-  padding: .5em 8px;
+  @extend %sm-padding;
+
   border-color: darken($light-grey, 10);
   color: lighten($dark-grey, 20);
   font: {

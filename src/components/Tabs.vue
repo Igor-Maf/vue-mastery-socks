@@ -24,7 +24,7 @@
 </template>
 
 <style lang="scss" scoped>
-    @import "../scss/variables";
+    @import "../scss/variables", "../scss/extends";
 
     .tabs {
         &__headings {
@@ -44,7 +44,8 @@
         }
 
         &__btn {
-            padding: 1em 16px;
+            @extend %lg-padding;
+
             background-color: $light-grey;
             color: $blue;
 
@@ -55,8 +56,7 @@
         }
 
         &__content {
-            padding: 1em 20px;
-            border: 1px solid #eee;
+            @extend %lg-padding, %based-border;
         }
     }
 </style>

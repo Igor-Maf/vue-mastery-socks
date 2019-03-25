@@ -1,8 +1,10 @@
 export default {
     name: 'app',
-    data: () => ({
-        cart: 0
-    }),
+    data() {
+        return {
+            cart: 0
+        }
+    },
     methods: {
         addToCart() {
             this.cart += 1;

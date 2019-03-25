@@ -6,7 +6,7 @@
       <router-link to="/product">Product</router-link>
     </nav>
 
-    <div class="cart" :class="[cart > 0 ? 'cart--has-product' : 'cart--is-empty']">
+    <div class="cart" :class="{'cart--has-product': cart > 0}">
       <span>Cart</span>
       <strong>{{ cart }}</strong>
     </div>

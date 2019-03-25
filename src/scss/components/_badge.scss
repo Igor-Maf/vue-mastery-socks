@@ -1,5 +1,5 @@
 .badge {
-  padding: .5em 8px;
+  @extend %sm-padding;
 
   &--success {
     background-color: $green;

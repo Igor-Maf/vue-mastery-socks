@@ -1,7 +1,8 @@
 @import
   "scss/variables",
-  "scss/common",
   "scss/helpers",
+  "scss/extends",
+  "scss/common",
   "scss/components/btn",
   "scss/components/badge",
   "scss/components/form";
@@ -12,20 +13,13 @@
 }
 
 .cart {
-  padding: 1em 20px;
+  @extend %lg-padding, %based-border;
+
   margin-top: 1em;
   display: flex;
   justify-content: space-between;
-  border: {
-    width: 1px;
-    style: solid;
-  };
 
   &--has-product {
     border-color: darken($light-grey, 10);
-  }
-
-  &--is-empty {
-    border-color: $light-grey;
   }
 }
