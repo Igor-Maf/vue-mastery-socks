@@ -48,12 +48,12 @@
                 </main>
             </section>
 
-            <tabs :tabs="tabs" :selectedTab="reviews.length ? 'reviews' : 'make-review'">
+            <tabs :tabs="tabs" :selectedTab="selectedTab" @change-selected-tab="changeSelectedTab">
                 <template slot="reviews">
                     <section class="reviews">
                         <h2>Reviews</h2>
 
-                        <ul class="h-list-unstyled" v-if="reviews.length">
+                        <ul class="h-list-unstyled" v-if="reviewsQuantity">
                             <li v-for="(review, index) in reviews" :key="index" :id="index" class="reviews__item">
                                 <div>
                                     <strong>{{ review.name }}</strong> - <span>{{ review.rating }}</span>
@@ -64,7 +64,15 @@
                         </ul>
 
                         <p class="h-text-secondary" v-else>
-                            Go to <strong>Make a Review</strong> and add your first review!
+                            Go to
+                            <button
+                                type="button"
+                                class="btn btn--link"
+                                @click="changeSelectedTab('make-review')"
+                            >
+                                Make a Review
+                            </button>
+                            and add your first review!
                         </p>
                     </section>
                 </template>

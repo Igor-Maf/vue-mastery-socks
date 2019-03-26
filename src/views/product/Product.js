@@ -26,6 +26,7 @@ export default {
                 }
             ],
             reviews: [],
+            selectedTab: null,
             tabs: [
                 {
                     key: 'reviews',
@@ -38,6 +39,19 @@ export default {
             ]
         }
     },
+    computed: {
+        pageTitle() {
+            return `${this.area} ${this.title}`
+        },
+        reviewsQuantity() {
+            return this.reviews.length;
+        }
+    },
+    mounted() {
+        this.$nextTick(() => this.changeSelectedTab(
+            this.reviewsQuantity ? 'reviews' : 'make-review'
+        ))
+    },
     methods: {
         addToCart() {
             if (this.quantity > 0) {
@@ -48,13 +62,12 @@ export default {
         toggleProduct(type) {
             this.type = type;
         },
+        changeSelectedTab(tabKey) {
+            this.selectedTab = tabKey;
+        },
         addReview(review) {
             this.reviews.push(review);
-        }
-    },
-    computed: {
-        pageTitle() {
-            return `${this.area} ${this.title}`
+            this.changeSelectedTab( 'reviews');
         }
     },
     components: {

@@ -19,8 +19,20 @@
     }
   }
 
+  &--link {
+    @extend .btn--clear;
+
+    color: $blue;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: darken($blue, 10);
+    }
+  }
+
   &:disabled {
-     background-color: darken($light-grey, 10);
+    background-color: darken($light-grey, 10);
     cursor: not-allowed;
   }
 }

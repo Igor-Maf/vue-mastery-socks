@@ -10,7 +10,7 @@
                 <button
                     type="button"
                     class="btn btn--clear tabs__btn"
-                    @click="activeTab = key"
+                    @click="$emit('change-selected-tab', key)"
                 >
                     {{ title }}
                 </button>
@@ -73,6 +73,11 @@
         data() {
             return {
                 activeTab: this.selectedTab || this.tabs[0].key
+            }
+        },
+        watch: {
+            selectedTab(value) {
+                this.activeTab = value;
             }
         }
     }
