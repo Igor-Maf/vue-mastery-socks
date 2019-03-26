@@ -48,7 +48,7 @@
                 </main>
             </section>
 
-            <tabs :tabs="tabs" :selectedTab="selectedTab" @change-selected-tab="changeSelectedTab">
+            <Tabs :tabs="tabs" :selectedTab="selectedTab" @change-selected-tab="changeSelectedTab">
                 <template slot="reviews">
                     <section class="reviews">
                         <h2>Reviews</h2>
@@ -80,7 +80,7 @@
                 <template slot="make-review">
                     <product-review @new-review="addReview"></product-review>
                 </template>
-            </tabs>
+            </Tabs>
         </section>
     </div>
 </template>

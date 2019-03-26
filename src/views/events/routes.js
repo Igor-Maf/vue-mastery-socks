@@ -5,18 +5,17 @@ import EventForm from './views/EventForm';
 
 export const EVENTS_ROUTES = {
     path: '/events',
-    name: 'events',
     component: Events,
     children: [
         {
             path: '',
             redirect: {
-                name: 'list'
+                name: 'events-list'
             }
         },
         {
             path: 'list',
-            name: 'list',
+            name: 'events-list',
             component: EventsList
         },
         {

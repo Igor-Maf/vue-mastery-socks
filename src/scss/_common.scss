@@ -19,7 +19,8 @@ textarea {
 }
 
 h1,
-h2 {
+h2,
+h3 {
   margin: {
     top: 0;
     bottom: .5em;
@@ -32,6 +33,10 @@ h1 {
 
 h2 {
   font-size: 1.4em;
+}
+
+h3 {
+  font-size: 1.2em;
 }
 
 small {

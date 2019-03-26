@@ -13,6 +13,8 @@
     </div>
 
     <router-view @add-to-cart="addToCart" />
+
+    <Notifications></Notifications>
   </div>
 </template>
 
