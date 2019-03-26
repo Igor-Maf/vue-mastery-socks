@@ -48,9 +48,7 @@ export default {
         }
     },
     mounted() {
-        this.$nextTick(() => this.changeSelectedTab(
-            this.reviewsQuantity ? 'reviews' : 'make-review'
-        ))
+        this.changeSelectedTab(this.reviewsQuantity ? 'reviews' : 'make-review')
     },
     methods: {
         addToCart() {

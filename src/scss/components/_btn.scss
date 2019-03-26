@@ -20,15 +20,9 @@
   }
 
   &--link {
-    @extend .btn--clear;
+    @extend .btn--clear, a;
 
-    color: $blue;
     text-decoration: underline;
-
-    &:hover,
-    &:focus {
-      color: darken($blue, 10);
-    }
   }
 
   &:disabled {
