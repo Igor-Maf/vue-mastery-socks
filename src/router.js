@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Home from './views/Home'
 import NotFound from './views/404'
+
+import { EVENTS_ROUTES } from './views/events/routes';
 
 Vue.use(Router);
 
@@ -10,13 +13,15 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: '',
+      redirect: '/home'
+    },
+    {
+      path: '/home',
       component: Home
     },
     {
       path: '/about',
-      name: 'about',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
@@ -24,12 +29,12 @@ export default new Router({
     },
     {
       path: '/product',
-      name: 'product',
       component: () => import(/* webpackChunkName: "product" */ './views/product/Product.vue')
     },
     {
       path: '*',
       component: NotFound
-    }
+    },
+    EVENTS_ROUTES
   ]
 })

@@ -1,9 +1,6 @@
 @import "../../scss/variables", "../../scss/extends";
 
 .product {
-  width: 700px;
-  margin: 0 auto;
-
   &__content {
     display: flex;
     align-items: flex-start;

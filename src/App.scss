@@ -7,9 +7,18 @@
   "scss/components/badge",
   "scss/components/form";
 
-.app,
-.content {
+.app {
   margin-top: 2em;
+}
+
+.content {
+  width: 700px;
+  margin: 2em auto;
+}
+
+.router-link-active {
+  color: darken($blue, 10);
+  text-decoration: none;
 }
 
 .cart {

@@ -1,0 +1,33 @@
+@import "../../scss/variables", "../../scss/extends", "../../scss/helpers";
+
+.events {
+  h1 {
+    margin-bottom: 0;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+
+  &__menu {
+    @extend .h-list-unstyled, %based-border;
+
+    margin: {
+      top: 0;
+      bottom: 0;
+    };
+
+    li {
+      @extend %sm-padding;
+
+      display: inline-block;
+
+      &:not(:last-child) {
+        border-right: 1px solid $light-grey;
+      }
+    }
+  }
+}
