@@ -31,8 +31,9 @@
 </template>
 
 <script>
+    import { EventBus } from '@/event-bus';
+
     export default {
-        name: 'product-review',
         data() {
             return {
                 name: null,
@@ -46,6 +47,11 @@
 
                 if (name && review && rating) {
                     this.$emit('new-review', {name, review, rating});
+
+                    EventBus.$emit('add-notification', {
+                        text: 'Review successfully added',
+                        type: 'success'
+                    })
                 }
             }
         }

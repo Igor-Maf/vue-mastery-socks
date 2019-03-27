@@ -1,9 +1,15 @@
 .badge {
   @extend %sm-padding;
 
+  display: inline-block;
+  font-style: italic;
+
   &--success {
     background-color: $green;
     color: #fff;
-    font-style: italic;
+  }
+
+  &--default {
+    background-color: $light-grey;
   }
 }

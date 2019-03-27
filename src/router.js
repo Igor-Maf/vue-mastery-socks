@@ -18,7 +18,8 @@ export default new Router({
     },
     {
       path: '/home',
-      component: Home
+      component: Home,
+      // alias: '/index'
     },
     {
       path: '/about',

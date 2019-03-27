@@ -78,7 +78,7 @@
                 </template>
 
                 <template slot="make-review">
-                    <product-review @new-review="addReview"></product-review>
+                    <ProductReview @new-review="addReview" />
                 </template>
             </Tabs>
         </section>

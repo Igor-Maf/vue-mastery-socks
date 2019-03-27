@@ -2,10 +2,22 @@
     <div>
         <h2>List of Events</h2>
 
-        <ul>
-            <li>
-                <router-link :to="{name: 'event', params: {id: '1'}}">Event #1</router-link>
-            </li>
-        </ul>
+        <section>
+            <ul class="h-list-unstyled">
+                <li>
+                    <EventCard />
+                </li>
+            </ul>
+        </section>
     </div>
 </template>
+
+<script>
+    import EventCard from './components/EventCard'
+
+    export default {
+        components: {
+            EventCard
+        }
+    }
+</script>

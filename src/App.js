@@ -12,13 +12,10 @@ export default {
         addToCart() {
             this.cart += 1;
 
-            for (let i = 0; i < 10; i++) {
-                EventBus.$emit('add-notification', {
-                    title: `Title ${i}`,
-                    text: `Test text ${i}`,
-                    type: i % 2 ? 'success' : 'error'
-                })
-            }
+            EventBus.$emit('add-notification', {
+                text: 'Product successfully added to Cart',
+                type: 'success'
+            })
         }
     },
     watch: {

@@ -14,7 +14,7 @@
 
     <router-view @add-to-cart="addToCart" />
 
-    <Notifications></Notifications>
+    <Notifications />
   </div>
 </template>
 
