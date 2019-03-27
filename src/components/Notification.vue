@@ -22,6 +22,7 @@
             width: 100%;
             opacity: .8;
             z-index: -1;
+            background-color: #000;
         }
 
         &__btn {

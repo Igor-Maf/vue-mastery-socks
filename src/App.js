@@ -21,6 +21,11 @@ export default {
             }
         }
     },
+    watch: {
+        '$route'() {
+            EventBus.$emit('delete-notifications');
+        }
+    },
     components: {
         Notifications
     }

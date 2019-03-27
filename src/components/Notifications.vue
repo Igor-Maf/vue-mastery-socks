@@ -2,7 +2,7 @@
     <div class="notifications" v-if="messages.length">
         <ul class="notifications__list">
             <li
-                v-for="(message, index) in reversedMessages"
+                v-for="(message, index) in messages"
                 :key="index"
                 class="notifications__item"
             >
@@ -51,21 +51,28 @@
                 messages: []
             }
         },
-        computed: {
-            reversedMessages() {
-                return this.messages.reverse();
-            }
-        },
         methods: {
             addNotification(data) {
-                this.messages.push(data);
+                if (data === null) {
+                    return false;
+                }
+
+                if (typeof data === 'object' && !data.text) {
+                    return false;
+                }
+
+                this.messages.unshift(data);
             },
             removeNotification(index) {
                 this.messages.splice(index, 1);
+            },
+            removeNotifications() {
+                this.messages = [];
             }
         },
         created() {
-            EventBus.$on('add-notification', this.addNotification)
+            EventBus.$on('add-notification', this.addNotification);
+            EventBus.$on('delete-notifications', this.removeNotifications);
         },
         components: {
             Notification
