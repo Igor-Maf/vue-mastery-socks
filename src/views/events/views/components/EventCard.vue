@@ -1,22 +1,22 @@
 <template>
-    <router-link :to="{name: 'event', params: { id: `${id}` }}" class="event-link">
+    <router-link :to="{name: 'event', params: { id: event.id }}" class="event-link">
         <article class="event-card">
             <header>
-                <h3>{{ title }}</h3>
+                <h3>{{ event.title }}</h3>
             </header>
 
-            <footer class="event-card__footer">
-                <span class="badge badge--default" v-if="attendees.length">
+            <footer>
+                <span class="badge badge--default" v-if="event.attendees.length">
                     <IconLabel>
                         <Icon name="users" class="h-color-grey" slot="icon" />
-                        <small>{{ attendees.length }} attending</small>
+                        <small>{{ event.attendees.length }} attending</small>
                     </IconLabel>
                 </span>
 
                 <span class="badge badge--default">
                     <IconLabel>
                         <Icon name="clock" class="h-color-grey" slot="icon" />
-                        <time class="h-text-secondary">@{{ time }} on {{ date }}</time>
+                        <time class="h-text-secondary">@{{ event.time }} on {{ event.date }}</time>
                     </IconLabel>
                 </span>
             </footer>
@@ -40,12 +40,6 @@
 
     .event-card {
         @extend %lg-padding, %based-border;
-
-        &__footer {
-            .badge:not(:last-child) {
-                margin-right: 8px;
-            }
-        }
     }
 </style>
 
@@ -54,27 +48,8 @@
     import IconLabel from '@/components/IconLabel'
 
     export default {
-        data() {
-            return {
-                id: 1,
-                title: 'Event #1',
-                date: 'Tues Aug 19, 2018',
-                time: '6:00',
-                attendees: [
-                    {
-                        id: 1,
-                        name: 'Ihor Gevorkyan'
-                    },
-                    {
-                        id: 2,
-                        name: 'Dan Abramov'
-                    },
-                    {
-                        id: 3,
-                        name: 'Dr. Smith'
-                    }
-                ]
-            }
+        props: {
+            event: Object
         },
         components: {
             Icon,
