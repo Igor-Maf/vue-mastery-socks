@@ -5,11 +5,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        user: {
-            id: '1',
-            name: 'Ihor Gevorkyan',
-            role: 'admin'
-        },
         categories: [
             'sustainability',
             'nature',
@@ -19,11 +14,17 @@ export default new Vuex.Store({
             'food',
             'community'
         ],
+        times: []
+        /* user: {
+            id: '1',
+            name: 'Ihor Gevorkyan',
+            role: 'admin'
+        },
         events: [
             { id: 1, title: 'Event #1', organizer: 'Ihor Gevorkyan' },
             { id: 2, title: 'Event #2', organizer: 'Ms. Smith' },
             { id: 3, title: 'Event #3', organizer: 'Ihor Gevorkyan' }
-        ]/* ,
+        ],
         todos: [
             {
                 id: 1,
@@ -60,9 +61,9 @@ export default new Vuex.Store({
     mutations: {},
     actions: {},
     getters: {
-        categoriesLength: state => state.categories.length,
+        /* categoriesLength: state => state.categories.length,
         getEventByID: state => id => state.events.find(event => event.id === id),
-        // doneTodos: state => state.todos.filter(todo => todo.done),
-        // activeTodosCount: (state, getters) => state.todos.length - getters.doneTodos.length - example with using getters in getter
+        doneTodos: state => state.todos.filter(todo => todo.done),
+        activeTodosCount: (state, getters) => state.todos.length - getters.doneTodos.length // example with using getters in getter */
     }
 })

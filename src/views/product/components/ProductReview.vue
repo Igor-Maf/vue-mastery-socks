@@ -2,7 +2,7 @@
     <form class="form form--default" @submit.prevent="submit">
         <div class="form__row">
             <label for="name">Name:</label>
-            <input id="name" autocomplete="off" v-model="name">
+            <input id="name" autocomplete="off" v-model="name" />
         </div>
 
         <div class="form__row">

@@ -36,7 +36,7 @@
 </template>
 
 <script>
-    import { EventBus } from '@/event-bus';
+    import { EventBus } from '@/event-bus'
     import EventsService from '@/services/EventsService'
 
     export default {
