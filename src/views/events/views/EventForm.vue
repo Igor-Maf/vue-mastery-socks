@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Create an Event</h1>
+        <h2>Create an Event</h2>
 
         <form class="form form--default" @submit.prevent="submit">
             <div class="form__row">
