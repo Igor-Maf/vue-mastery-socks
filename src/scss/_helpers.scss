@@ -31,3 +31,7 @@
 .h-color-orange {
   color: $orange;
 }
+
+.h-color-grey {
+  color: darken($light-grey, 30);
+}

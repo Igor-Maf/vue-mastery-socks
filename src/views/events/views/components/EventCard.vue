@@ -6,17 +6,18 @@
             </header>
 
             <footer class="event-card__footer">
-                <span class="badge badge--default badge--complex" v-if="attendees.length">
-                    <Icon name="users" />
-                    <small>{{ attendees.length }} attending</small>
+                <span class="badge badge--default" v-if="attendees.length">
+                    <IconLabel>
+                        <Icon name="users" class="h-color-grey" slot="icon" />
+                        <small>{{ attendees.length }} attending</small>
+                    </IconLabel>
                 </span>
 
-                <span class="badge badge--default badge--complex">
-                    <Icon name="clock" />
-
-                    <time class="h-text-secondary">
-                        @{{ time }} on {{ date }}
-                    </time>
+                <span class="badge badge--default">
+                    <IconLabel>
+                        <Icon name="clock" class="h-color-grey" slot="icon" />
+                        <time class="h-text-secondary">@{{ time }} on {{ date }}</time>
+                    </IconLabel>
                 </span>
             </footer>
         </article>
@@ -50,6 +51,7 @@
 
 <script>
     import Icon from '@/components/Icon'
+    import IconLabel from '@/components/IconLabel'
 
     export default {
         data() {
@@ -75,7 +77,8 @@
             }
         },
         components: {
-            Icon
+            Icon,
+            IconLabel
         }
     }
 </script>
