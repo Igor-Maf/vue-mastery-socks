@@ -2,13 +2,13 @@
     <div class="notifications" v-if="messages.length">
         <ul class="notifications__list">
             <li
-                v-for="(message, index) in messages"
-                :key="index"
+                v-for="message in messages"
+                :key="message.id"
                 class="notifications__item"
             >
                 <Notification
                     :message="message"
-                    @on-notification-click="removeNotification(index)"
+                    @delete-notification="removeNotification"
                 ></Notification>
             </li>
         </ul>
@@ -48,7 +48,8 @@
     export default {
         data() {
             return {
-                messages: []
+                messages: [],
+                lastID: 0
             }
         },
         methods: {
@@ -61,10 +62,13 @@
                     return false;
                 }
 
+                data.id = this.lastID++;
+
                 this.messages.unshift(data);
             },
-            removeNotification(index) {
-                this.messages.splice(index, 1);
+            removeNotification(id) {
+                // this.messages.splice(index, 1);
+                this.messages = this.messages.filter(message => message.id !== id);
             },
             removeNotifications() {
                 this.messages = [];
