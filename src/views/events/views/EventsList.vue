@@ -23,26 +23,11 @@
 </style>
 
 <script>
-    import { EventBus } from '@/event-bus';
-    import EventsService from '@/services/EventsService';
+    import { mapState } from 'vuex'
     import EventCard from './components/EventCard'
 
     export default {
-        data() {
-            return {
-                events: []
-            }
-        },
-        created() {
-            EventsService.getEvents()
-                .then(response => this.events = response.data)
-                .catch(error => { // TODO: Create middleware for errors
-                    EventBus.$emit('add-notification', {
-                        type: 'error',
-                        text: error.response.status + ': ' + error.response.statusText
-                    })
-                })
-        },
+        computed: mapState(['events']),
         components: {
             EventCard
         }

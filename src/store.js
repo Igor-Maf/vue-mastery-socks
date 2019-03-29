@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import { EventBus } from '@/event-bus';
+import EventsService from '@/services/EventsService'
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -14,18 +17,14 @@ export default new Vuex.Store({
             'food',
             'community'
         ],
-        times: []
-        /* user: {
+        hours: [],
+        user: {
             id: '1',
             name: 'Ihor Gevorkyan',
             role: 'admin'
         },
-        events: [
-            { id: 1, title: 'Event #1', organizer: 'Ihor Gevorkyan' },
-            { id: 2, title: 'Event #2', organizer: 'Ms. Smith' },
-            { id: 3, title: 'Event #3', organizer: 'Ihor Gevorkyan' }
-        ],
-        todos: [
+        events: [],
+        /* todos: [
             {
                 id: 1,
                 text: 'Todo #1',
@@ -58,12 +57,47 @@ export default new Vuex.Store({
             }
         ] */
     },
-    mutations: {},
-    actions: {},
+    mutations: {
+        ADD_EVENT(state, event) {
+            state.events.push(event);
+        },
+        SET_EVENTS(state, events) {
+            state.events = events;
+        },
+        SET_HOURS(state, hours) {
+            state.hours = hours;
+        }
+    },
+    actions: {
+        setHours({ commit }) {
+            let hours = [];
+
+            for (let i = 0; i <= 24; i++) {
+                hours.push(i + ':00');
+            }
+
+            commit('SET_HOURS', hours);
+        },
+        addEvent({ commit }, event) {
+            return EventsService.addEvent(event).then(() =>
+                commit('ADD_EVENT', event)
+            )
+        },
+        fetchEvents({ commit }) {
+            EventsService.getEvents()
+                .then(response => commit('SET_EVENTS', response.data))
+                .catch(error => { // TODO: Create middleware for errors
+                    EventBus.$emit('add-notification', {
+                        type: 'error',
+                        text: error.response.status + ': ' + error.response.statusText
+                    })
+                })
+        }
+    },
     getters: {
-        /* categoriesLength: state => state.categories.length,
+        categoriesLength: state => state.categories.length,
         getEventByID: state => id => state.events.find(event => event.id === id),
-        doneTodos: state => state.todos.filter(todo => todo.done),
+        /* doneTodos: state => state.todos.filter(todo => todo.done),
         activeTodosCount: (state, getters) => state.todos.length - getters.doneTodos.length // example with using getters in getter */
     }
 })

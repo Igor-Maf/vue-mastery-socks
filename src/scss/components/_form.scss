@@ -1,6 +1,16 @@
 .form {
   &__row {
     margin-bottom: 1em;
+
+    &--error {
+      label {
+        color: $red;
+      }
+
+      input {
+        border-color: $red
+      }
+    }
   }
 
   &--default {

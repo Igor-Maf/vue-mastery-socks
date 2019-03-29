@@ -6,7 +6,7 @@
             </header>
 
             <footer>
-                <span class="badge badge--default" v-if="event.attendees.length">
+                <span class="badge badge--default" v-if="event.attendees && event.attendees.length">
                     <IconLabel>
                         <Icon name="users" class="h-color-grey" slot="icon" />
                         <small>{{ event.attendees.length }} attending</small>

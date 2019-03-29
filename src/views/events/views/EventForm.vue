@@ -15,7 +15,7 @@
                 </select>
             </div>
 
-            <div class="form__row">
+            <div class="form__row" :class="{'form__row--error': submitted && !eventForm.title}">
                 <label for="title">Title:</label>
 
                 <input
@@ -47,7 +47,7 @@
                 />
             </div>
 
-            <div class="form__row">
+            <div class="form__row" :class="{'form__row--error': submitted && !eventForm.date}">
                 <label for="date">Date:</label>
 
                 <datepicker
@@ -57,12 +57,12 @@
                 ></datepicker>
             </div>
 
-            <div class="form__row" v-if="times.length">
+            <div class="form__row" v-if="hours.length">
                 <label for="time">Select a time:</label>
 
                 <select id="time" v-model="eventForm.time">
-                    <option v-for="time in times" :key="time">
-                        {{ time }}
+                    <option v-for="hour in hours" :key="hour">
+                        {{ hour }}
                     </option>
                 </select>
             </div>
@@ -93,21 +93,17 @@
     import { mapState/* , mapGetters */ } from 'vuex'
     import Datepicker from 'vuejs-datepicker'
 
+    import { EventBus } from '@/event-bus'
+
     export default {
         data() {
             return {
-                eventForm: {
-                    category: null,
-                    title: '',
-                    description: '',
-                    location: '',
-                    date: null,
-                    time: null
-                }
+                eventForm: this.getInitialEventFormData(),
+                submitted: false
             }
         },
         computed: {
-            ...mapState(['categories', 'times'])
+            ...mapState(['categories', 'hours'])
             /* getEvent() {
                 return this.$store.getters.getEventByID
             },
@@ -124,13 +120,51 @@
             }) */
         },
         mounted() {
-            if (this.categories.length) {
-                this.eventForm.category = this.categories[0];
-            }
+            this.$nextTick(() => {
+                if (this.categories.length) {
+                    this.eventForm.category = this.categories[0];
+                }
+
+                if (this.hours.length) {
+                    this.eventForm.time = this.hours[0];
+                }
+            })
         },
         methods: {
+            getInitialEventFormData() {
+                return {
+                    id: Math.floor(Math.random() * 1000000),
+                    user: this.$store.state.user,
+                    category: null,
+                    title: '',
+                    description: '',
+                    location: '',
+                    date: Date.now(),
+                    time: null
+                }
+            },
             submit() {
                 console.log('eventForm', this.eventForm);
+
+                this.submitted = true;
+
+                if (this.eventForm.title && this.eventForm.date) {
+                    this.$store.dispatch('addEvent', this.eventForm)
+                        .then(() =>
+                            this.$router.push({
+                                name: 'event',
+                                params: {
+                                    id: this.eventForm.id
+                                }
+                            })
+                        )
+                        .catch(() => {
+                            EventBus.$emit('add-notification', {
+                                type: 'error',
+                                text: 'There was a problem creating your event'
+                            })
+                        })
+                }
             }
         },
         components: {

@@ -7,5 +7,9 @@ export default {
 
     getEvent(id) {
         return apiClient.get('/events/' + id)
+    },
+
+    addEvent(event) {
+        return apiClient.post('/events', event)
     }
 }

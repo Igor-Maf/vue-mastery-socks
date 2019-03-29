@@ -8,6 +8,11 @@ export default {
             cart: 0
         }
     },
+    watch: {
+        '$route'() {
+            EventBus.$emit('delete-notifications');
+        }
+    },
     methods: {
         addToCart() {
             this.cart += 1;
@@ -18,10 +23,8 @@ export default {
             })
         }
     },
-    watch: {
-        '$route'() {
-            EventBus.$emit('delete-notifications');
-        }
+    mounted() {
+        this.$store.dispatch('setHours')
     },
     components: {
         Notifications
