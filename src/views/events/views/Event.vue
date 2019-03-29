@@ -1,48 +1,57 @@
 <template>
     <div>
-        <h2>{{ event.title }}</h2>
+        <template v-if="event">
+            <h2>{{ event.title }}</h2>
 
-        <p v-if="event.description">{{ event.description }}</p>
+            <img alt="Vue logo" src="@/assets/vue.png" />
 
-        <div
-            v-if="event.attendees && event.attendees.length"
-            class="h-list-unstyled h-text-secondary"
-        >
-            <span>Attendees:</span>
+            <p v-if="event.description">{{ event.description }}</p>
 
-            <span v-for="(attendee, index) in event.attendees" :key="attendee.id">
-                {{ attendee.name }}<span v-if="index !== event.attendees.length - 1">, </span>
-            </span>
-        </div>
+            <div
+                v-if="event.attendees && event.attendees.length"
+                class="h-list-unstyled h-text-secondary"
+            >
+                <span>Attendees:</span>
 
-        <p class="h-text-secondary" v-if="event.user">
-            Organized by: <strong>{{ event.user.name }}</strong>
-        </p>
+                <span v-for="(attendee, index) in event.attendees" :key="attendee.id">
+                    {{ attendee.name }}<span v-if="index !== event.attendees.length - 1">, </span>
+                </span>
+            </div>
 
-        <div>
-            <small class="badge badge--default" v-if="event.category">
-                {{ event.category }}
-            </small>
+            <p class="h-text-secondary" v-if="event.user">
+                Organized by: <strong>{{ event.user.name }}</strong>
+            </p>
 
-            <small class="badge badge--default" v-if="event.location">
-                {{ event.location }}
-            </small>
+            <div>
+                <small class="badge badge--default" v-if="event.category">
+                    {{ event.category }}
+                </small>
 
-            <time class="badge badge--default h-text-secondary">
-                @{{ event.time }} on {{ event.date }}
-            </time>
-        </div>
+                <small class="badge badge--default" v-if="event.location">
+                    {{ event.location }}
+                </small>
+
+                <time class="badge badge--default h-text-secondary">
+                    @{{ event.time }} on {{ event.date }}
+                </time>
+            </div>
+        </template>
+
+        <p class="h-color-red" v-else>Event with ID #{{ id }} wasn't found.</p>
     </div>
 </template>
 
 <script>
-    import { mapState } from 'vuex'
+    import { mapState, mapActions } from 'vuex'
 
     export default {
         props: ['id'],
-        created() {
-            this.$store.dispatch('fetchEvent', this.id)
+        mounted() {
+            this.fetchEvent(this.id);
         },
-        computed: mapState(['event'])
+        computed: mapState({
+            event: state => state.events.event
+        }),
+        methods: mapActions('events', ['fetchEvent'])
     }
 </script>

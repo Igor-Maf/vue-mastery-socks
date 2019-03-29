@@ -12,10 +12,6 @@
 
     <router-view :key="$route.fullPath" @add-to-cart="addToCart" />
 
-    <div class="h-text-center">
-      <img alt="Vue logo" src="@/assets/vue.png" />
-    </div>
-
     <Notifications />
   </div>
 </template>

@@ -108,52 +108,10 @@
         "role": "admin"
       },
       "category": "sustainability",
-      "title": "Turpis cursus in hac habitasse platea dictumst quisque sagittis purus",
+      "title": "Turpis cursus in hac habitasse platea dictumst quisque sagittis...",
       "description": "Placerat vestibulum lectus mauris ultrices eros in cursus turpis. Varius duis at consectetur lorem donec. Tempor orci eu lobortis elementum nibh tellus molestie nunc non.",
       "location": "Las Vegas",
       "date": 1553862361715,
-      "time": "0:00"
-    },
-    {
-      "id": 696595,
-      "user": {
-        "id": "1",
-        "name": "Ihor Gevorkyan",
-        "role": "admin"
-      },
-      "category": "sustainability",
-      "title": "Test #4",
-      "description": "",
-      "location": "Odessa",
-      "date": 1553862369449,
-      "time": "0:00"
-    },
-    {
-      "id": 615501,
-      "user": {
-        "id": "1",
-        "name": "Ihor Gevorkyan",
-        "role": "admin"
-      },
-      "category": "sustainability",
-      "title": "Test #5",
-      "description": "",
-      "location": "",
-      "date": 1553865720332,
-      "time": "0:00"
-    },
-    {
-      "id": 717402,
-      "user": {
-        "id": "1",
-        "name": "Ihor Gevorkyan",
-        "role": "admin"
-      },
-      "category": "sustainability",
-      "title": "Test #6",
-      "description": "Test #6",
-      "location": "",
-      "date": 1553866748529,
       "time": "0:00"
     }
   ]

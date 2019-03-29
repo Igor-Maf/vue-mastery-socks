@@ -72,7 +72,8 @@
             </div>
         </form>
 
-        <!-- {{ $store.state.user.name }}
+        <!-- {{ user }}
+        {{ $store.state.user.name }}
         <h2>Create Event, {{ username }}</h2>
 
         <p class="h-text-secondary">
@@ -134,7 +135,7 @@
             getInitialEventFormData() {
                 return {
                     id: Math.floor(Math.random() * 1000000),
-                    user: this.$store.state.user,
+                    // user: this.$store.state.currentUser.user,
                     category: null,
                     title: '',
                     description: '',
@@ -149,7 +150,7 @@
                 this.submitted = true;
 
                 if (this.eventForm.title && this.eventForm.date) {
-                    this.$store.dispatch('addEvent', this.eventForm)
+                    this.$store.dispatch('events/addEvent', this.eventForm)
                         .then(() =>
                             this.$router.push({
                                 name: 'event',

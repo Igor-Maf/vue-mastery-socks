@@ -10,33 +10,33 @@
             </ul>
 
             <p class="h-text-secondary" v-else>Haven't events yet</p>
-
-            <div class="navigation">
-                <template v-if="pageNumber !== 1">
-                    <router-link
-                        :to="{name: 'events-list', query: {page: pageNumber - 1}}"
-                        class="navigation__link"
-                    >
-                        <IconLabel>
-                            <Icon name="arrow-left" slot="icon" />
-                            <span class="h-text-secondary">Previous</span>
-                        </IconLabel>
-                    </router-link>
-                </template>
-
-                <template v-if="eventsTotal > pageNumber * perPage">
-                    <router-link
-                        :to="{name: 'events-list', query: {page: pageNumber + 1}}"
-                        class="navigation__link"
-                    >
-                        <IconLabel inverse="true">
-                            <Icon name="arrow-right" slot="icon" />
-                            <span class="h-text-secondary">Next</span>
-                        </IconLabel>
-                    </router-link>
-                </template>
-            </div>
         </section>
+
+        <div class="navigation">
+            <template v-if="pageNumber !== 1">
+                <router-link
+                    :to="{name: 'events-list', query: {page: pageNumber - 1}}"
+                    class="navigation__link"
+                >
+                    <IconLabel>
+                        <Icon name="arrow-left" slot="icon" />
+                        <span class="h-text-secondary">Previous</span>
+                    </IconLabel>
+                </router-link>
+            </template>
+
+            <template v-if="eventsTotal > pageNumber * perPage">
+                <router-link
+                    :to="{name: 'events-list', query: {page: pageNumber + 1}}"
+                    class="navigation__link"
+                >
+                    <IconLabel inverse="true">
+                        <Icon name="arrow-right" slot="icon" />
+                        <span class="h-text-secondary">Next</span>
+                    </IconLabel>
+                </router-link>
+            </template>
+        </div>
     </div>
 </template>
 
@@ -61,7 +61,7 @@
 </style>
 
 <script>
-    import { mapState } from 'vuex'
+    import { mapState, mapActions } from 'vuex'
 
     import Icon from '@/components/Icon'
     import IconLabel from '@/components/IconLabel'
@@ -69,14 +69,19 @@
 
     export default {
         mounted() {
-            this.$store.dispatch('fetchEvents', this.pageNumber)
+            this.fetchEvents(this.pageNumber)
         },
         computed: {
             pageNumber() {
                 return +this.$route.query.page || 1
             },
-            ...mapState(['events', 'eventsTotal', 'perPage'])
+            ...mapState({
+                events: state => state.events.events,
+                eventsTotal: state => state.events.eventsTotal,
+                perPage: state => state.perPage,
+            })
         },
+        methods: mapActions('events', ['fetchEvents']),
         components: {
             EventCard,
             Icon,

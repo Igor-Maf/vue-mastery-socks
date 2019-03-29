@@ -1,12 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { EventBus } from '@/event-bus';
-import { EVENTS_STORE } from '@/views/events/store'
+import * as currentUser from '@/store/modules/current-user'
+import * as events from '@/store/modules/events'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+    modules: {
+        currentUser,
+        events
+    },
     state: {
         perPage: 4,
         categories: [
@@ -19,12 +23,6 @@ export default new Vuex.Store({
             'community'
         ],
         hours: [],
-        user: {
-            id: '1',
-            name: 'Ihor Gevorkyan',
-            role: 'admin'
-        },
-        ...EVENTS_STORE.state
         /* todos: [
             {
                 id: 1,
@@ -61,8 +59,7 @@ export default new Vuex.Store({
     mutations: {
         SET_HOURS(state, hours) {
             state.hours = hours;
-        },
-        ...EVENTS_STORE.mutations
+        }
     },
     actions: {
         setHours({ commit }) {
@@ -73,13 +70,11 @@ export default new Vuex.Store({
             }
 
             commit('SET_HOURS', hours);
-        },
-        ...EVENTS_STORE.actions
-    },
+        }
+    }/* ,
     getters: {
         categoriesLength: state => state.categories.length,
-        ...EVENTS_STORE.getters
-        /* doneTodos: state => state.todos.filter(todo => todo.done),
-        activeTodosCount: (state, getters) => state.todos.length - getters.doneTodos.length // example with using getters in getter */
-    }
+        doneTodos: state => state.todos.filter(todo => todo.done),
+        activeTodosCount: (state, getters) => state.todos.length - getters.doneTodos.length // example with using getters in getter
+    } */
 })
