@@ -2,7 +2,7 @@
     <div>
         <h2>{{ event.title }}</h2>
 
-        <p>{{ event.description }}</p>
+        <p v-if="event.description">{{ event.description }}</p>
 
         <div
             v-if="event.attendees && event.attendees.length"
@@ -36,25 +36,13 @@
 </template>
 
 <script>
-    import { EventBus } from '@/event-bus'
-    import EventsService from '@/services/EventsService'
+    import { mapState } from 'vuex'
 
     export default {
         props: ['id'],
-        data() {
-            return {
-                event: {}
-            }
-        },
         created() {
-            EventsService.getEvent(this.id)
-                .then(response => this.event = response.data)
-                .catch(error => {
-                    EventBus.$emit('add-notification', {
-                        type: 'error',
-                        text: error.response.status + ': ' + error.response.statusText
-                    })
-                })
-        }
+            this.$store.dispatch('fetchEvent', this.id)
+        },
+        computed: mapState(['event'])
     }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="l-label-icon">
+    <div class="l-label-icon" :class="{'l-label-icon--inverse': inverse}">
         <div class="l-label-icon__cell">
             <slot name="icon" />
         </div>
@@ -14,13 +14,23 @@
     .l-label-icon {
         display: flex;
         align-items: center;
+        margin-right: -4px;
 
         &__cell {
             display: inline-flex;
+            margin-right: 4px;
+        }
 
-            &:first-child {
-                margin-right: 4px;
-            }
+        &--inverse {
+            flex-direction: row-reverse;
         }
     }
 </style>
+
+<script>
+    export default {
+        props: {
+            inverse: false
+        }
+    }
+</script>

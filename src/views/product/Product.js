@@ -1,3 +1,4 @@
+// @ is an alias to /src
 import Tabs from '@/components/Tabs';
 import ProductReview from './components/ProductReview';
 

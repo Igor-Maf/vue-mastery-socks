@@ -11,7 +11,7 @@
       "title": "Cat Cabaret",
       "description": "Yay felines!",
       "location": "Meow Town",
-      "date": "2019-01-03T21:54:00.000Z",
+      "date": 1553862369449,
       "time": "2:00",
       "attendees": [
         {
@@ -35,7 +35,7 @@
       "title": "Kitty Cluster",
       "description": "Yay cats!",
       "location": "Catlandia",
-      "date": "2019-01-31T22:09:00.000Z",
+      "date": 1553862369449,
       "time": "7:00",
       "attendees": [
         {
@@ -54,10 +54,107 @@
       "organizer": "Adam",
       "title": "Puppy Parade",
       "description": "Yay pups!",
-      "location": "Puptown ",
-      "date": "2019-02-02T23:27:00.000Z",
+      "location": "Puptown",
+      "date": 1553862369449,
       "time": "1:00",
-      "attendees": []
+      "attendees": [
+        {
+          "id": 2,
+          "name": "John Smith"
+        },
+        {
+          "id": 3,
+          "name": "James Kitten"
+        },
+        {
+          "id": 4,
+          "name": "Mike Zambidis"
+        }
+      ]
+    },
+    {
+      "id": 641491,
+      "user": {
+        "id": "1",
+        "name": "Ihor Gevorkyan",
+        "role": "admin"
+      },
+      "category": "sustainability",
+      "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "location": "Odessa",
+      "date": 1553857359331,
+      "time": "0:00"
+    },
+    {
+      "id": 128379,
+      "user": {
+        "id": "1",
+        "name": "Ihor Gevorkyan",
+        "role": "admin"
+      },
+      "category": "sustainability",
+      "title": "Duis aute irure dolor in reprehenderit in voluptate...",
+      "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "location": "New York",
+      "date": 1553862350854,
+      "time": "0:00"
+    },
+    {
+      "id": 925750,
+      "user": {
+        "id": "1",
+        "name": "Ihor Gevorkyan",
+        "role": "admin"
+      },
+      "category": "sustainability",
+      "title": "Turpis cursus in hac habitasse platea dictumst quisque sagittis purus",
+      "description": "Placerat vestibulum lectus mauris ultrices eros in cursus turpis. Varius duis at consectetur lorem donec. Tempor orci eu lobortis elementum nibh tellus molestie nunc non.",
+      "location": "Las Vegas",
+      "date": 1553862361715,
+      "time": "0:00"
+    },
+    {
+      "id": 696595,
+      "user": {
+        "id": "1",
+        "name": "Ihor Gevorkyan",
+        "role": "admin"
+      },
+      "category": "sustainability",
+      "title": "Test #4",
+      "description": "",
+      "location": "Odessa",
+      "date": 1553862369449,
+      "time": "0:00"
+    },
+    {
+      "id": 615501,
+      "user": {
+        "id": "1",
+        "name": "Ihor Gevorkyan",
+        "role": "admin"
+      },
+      "category": "sustainability",
+      "title": "Test #5",
+      "description": "",
+      "location": "",
+      "date": 1553865720332,
+      "time": "0:00"
+    },
+    {
+      "id": 717402,
+      "user": {
+        "id": "1",
+        "name": "Ihor Gevorkyan",
+        "role": "admin"
+      },
+      "category": "sustainability",
+      "title": "Test #6",
+      "description": "Test #6",
+      "location": "",
+      "date": 1553866748529,
+      "time": "0:00"
     }
   ]
 }

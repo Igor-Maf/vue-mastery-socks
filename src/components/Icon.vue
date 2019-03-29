@@ -29,11 +29,11 @@
             name: String,
             width: {
                 type: [Number, String],
-                default: 24
+                default: 16
             },
             height: {
                 type: [Number, String],
-                default: 24
+                default: 16
             }
         }
     }

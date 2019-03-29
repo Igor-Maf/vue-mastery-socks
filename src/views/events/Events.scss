@@ -1,4 +1,4 @@
-@import "../../scss/variables", "../../scss/extends", "../../scss/helpers";
+@import "../../scss/variables", "../../scss/helpers";
 
 .events {
   h1 {
@@ -13,7 +13,7 @@
   }
 
   &__menu {
-    @extend .h-list-unstyled, %based-border;
+    @extend .h-list-unstyled;
 
     margin: {
       top: 0;
@@ -21,12 +21,10 @@
     };
 
     li {
-      @extend %sm-padding;
-
       display: inline-block;
 
       &:not(:last-child) {
-        border-right: 1px solid $light-grey;
+        margin-right: 8px;
       }
     }
   }

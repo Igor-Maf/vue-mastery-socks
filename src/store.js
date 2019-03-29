@@ -2,12 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import { EventBus } from '@/event-bus';
-import EventsService from '@/services/EventsService'
+import { EVENTS_STORE } from '@/views/events/store'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        perPage: 4,
         categories: [
             'sustainability',
             'nature',
@@ -23,7 +24,7 @@ export default new Vuex.Store({
             name: 'Ihor Gevorkyan',
             role: 'admin'
         },
-        events: [],
+        ...EVENTS_STORE.state
         /* todos: [
             {
                 id: 1,
@@ -58,15 +59,10 @@ export default new Vuex.Store({
         ] */
     },
     mutations: {
-        ADD_EVENT(state, event) {
-            state.events.push(event);
-        },
-        SET_EVENTS(state, events) {
-            state.events = events;
-        },
         SET_HOURS(state, hours) {
             state.hours = hours;
-        }
+        },
+        ...EVENTS_STORE.mutations
     },
     actions: {
         setHours({ commit }) {
@@ -78,25 +74,11 @@ export default new Vuex.Store({
 
             commit('SET_HOURS', hours);
         },
-        addEvent({ commit }, event) {
-            return EventsService.addEvent(event).then(() =>
-                commit('ADD_EVENT', event)
-            )
-        },
-        fetchEvents({ commit }) {
-            EventsService.getEvents()
-                .then(response => commit('SET_EVENTS', response.data))
-                .catch(error => { // TODO: Create middleware for errors
-                    EventBus.$emit('add-notification', {
-                        type: 'error',
-                        text: error.response.status + ': ' + error.response.statusText
-                    })
-                })
-        }
+        ...EVENTS_STORE.actions
     },
     getters: {
         categoriesLength: state => state.categories.length,
-        getEventByID: state => id => state.events.find(event => event.id === id),
+        ...EVENTS_STORE.getters
         /* doneTodos: state => state.todos.filter(todo => todo.done),
         activeTodosCount: (state, getters) => state.todos.length - getters.doneTodos.length // example with using getters in getter */
     }

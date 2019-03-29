@@ -68,7 +68,7 @@
             </div>
 
             <div>
-                <button class="btn btn--action">Add event</button>
+                <button class="btn btn--action" :disabled="!eventForm.title">Add event</button>
             </div>
         </form>
 

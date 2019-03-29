@@ -18,11 +18,3 @@
 </template>
 
 <style src="./Events.scss" lang="scss" scoped></style>
-
-<script>
-    export default {
-        mounted() {
-            this.$store.dispatch('fetchEvents')
-        }
-    }
-</script>

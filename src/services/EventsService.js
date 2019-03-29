@@ -1,8 +1,8 @@
 import {apiClient} from "../api-client";
 
 export default {
-    getEvents() {
-        return apiClient.get('/events')
+    getEvents(perPage, pageNumber) {
+        return apiClient.get(`/events?_limit=${perPage}&_page=${pageNumber}`)
     },
 
     getEvent(id) {

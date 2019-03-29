@@ -1,11 +1,11 @@
 <template>
-    <router-link :to="{name: 'event', params: { id: event.id }}" class="event-link">
+    <router-link :to="{name: 'event', params: {id: event.id}}" class="event-link">
         <article class="event-card">
             <header>
                 <h3>{{ event.title }}</h3>
             </header>
 
-            <footer>
+            <footer class="event-card__footer">
                 <span class="badge badge--default" v-if="event.attendees && event.attendees.length">
                     <IconLabel>
                         <Icon name="users" class="h-color-grey" slot="icon" />
@@ -13,11 +13,15 @@
                     </IconLabel>
                 </span>
 
-                <span class="badge badge--default">
+                <span class="badge badge--primary">
                     <IconLabel>
-                        <Icon name="clock" class="h-color-grey" slot="icon" />
+                        <Icon name="clock" slot="icon" />
                         <time class="h-text-secondary">@{{ event.time }} on {{ event.date }}</time>
                     </IconLabel>
+                </span>
+
+                <span class="badge badge--success h-text-secondary">
+                    <span>{{ event.category }}</span>
                 </span>
             </footer>
         </article>
@@ -33,13 +37,17 @@
         &:hover,
         &:focus {
             .event-card {
-                border-color: darken($light-grey, 10);
+                border-color: $orange;
             }
         }
     }
 
     .event-card {
         @extend %lg-padding, %based-border;
+
+        &__footer {
+            display: flex;
+        }
     }
 </style>
 
