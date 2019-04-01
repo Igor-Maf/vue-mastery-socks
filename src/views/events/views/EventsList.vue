@@ -15,7 +15,7 @@
         <div class="navigation">
             <template v-if="page !== 1">
                 <router-link
-                    :to="{name: 'events-list', query: {page: page - 1}}"
+                    :to="{ name: 'events-list', query: { page: page - 1 } }"
                     class="navigation__link"
                 >
                     <IconLabel>
@@ -27,7 +27,7 @@
 
             <template v-if="eventsTotal > page * perPage">
                 <router-link
-                    :to="{name: 'events-list', query: {page: page + 1}}"
+                    :to="{ name: 'events-list', query: { page: page + 1 } }"
                     class="navigation__link"
                 >
                     <IconLabel inverse="true">
@@ -69,11 +69,11 @@
     import EventCard from './components/EventCard'
 
     function getPageEvents(routeTo, next) {
+        console.log(routeTo.query.page);
+
         const currentPage = +routeTo.query.page || 1;
 
-        store.dispatch('events/fetchEvents', {
-            pageNumber: currentPage
-        })
+        store.dispatch('events/fetchEvents', currentPage)
             .then(() => {
                 routeTo.params.page = currentPage;
                 next();
@@ -106,7 +106,7 @@
             getPageEvents(routeTo, next);
         },
         // mounted() {
-        //     this.fetchEvents(this.pageNumber)
+            // this.fetchEvents(this.pageNumber)
         // },
         computed: {
             // pageNumber() {

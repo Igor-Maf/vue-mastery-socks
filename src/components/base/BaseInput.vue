@@ -1,6 +1,9 @@
 <template>
-    <div> <!-- div is only for example of using inheritAttrs property -->
-        <input :value="value" @input="updateValue" v-bind="$attrs" />
+    <div>
+        <!-- div is only for example of using inheritAttrs property -->
+        <!-- v-on="$listeners" has conflict with @input event, that's why we will use listeners as computed -->
+        <!-- we need v-on="$listeners" for validation in form which use this component -->
+        <input :value="value" @input="updateValue" v-bind="$attrs" v-on="listeners" />
     </div>
 </template>
 
@@ -9,6 +12,14 @@
         inheritAttrs: false,
         props: {
             value: [String, Number]
+        },
+        computed: {
+            listeners() {
+                return {
+                    ...this.$listeners,
+                    input: this.updateValue
+                }
+            }
         },
         methods: {
             updateValue(event) {

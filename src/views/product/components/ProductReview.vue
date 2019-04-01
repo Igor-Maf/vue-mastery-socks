@@ -1,6 +1,6 @@
 <template>
     <form class="form form--default" @submit.prevent="submit">
-        <div class="form__row">
+        <div class="form__row" :class="{ 'form__row--error': $v.name.$error }">
             <label for="name">Name:</label>
 
             <BaseInput
@@ -8,7 +8,12 @@
                 autocomplete="off"
                 placeholder="Enter your name"
                 v-model="name"
+                @blur="$v.name.$touch()"
             />
+
+            <template v-if="$v.name.$error">
+                <p v-if="!$v.name.required" class="h-text-secondary h-color-red">Name is required</p>
+            </template>
         </div>
 
         <div class="form__row">
@@ -37,6 +42,7 @@
 </template>
 
 <script>
+    import { required } from 'vuelidate/lib/validators'
     import { EventBus } from '@/event-bus';
 
     export default {
@@ -47,12 +53,19 @@
                 rating: 5
             }
         },
+        validations: {
+            name: {
+                required
+            }
+        },
         methods: {
             submit() {
-                const {name, review, rating} = this;
+                this.$v.$touch();
 
-                if (name && review && rating) {
-                    this.$emit('new-review', {name, review, rating});
+                if (!this.$v.$invalid) {
+                    const { name, review, rating } = this;
+
+                    this.$emit('new-review', { name, review, rating });
 
                     EventBus.$emit('add-notification', {
                         text: 'Review successfully added',

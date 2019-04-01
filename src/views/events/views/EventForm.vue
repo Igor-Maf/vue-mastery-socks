@@ -15,7 +15,7 @@
                 </select>
             </div>
 
-            <div class="form__row" :class="{'form__row--error': submitted && !eventForm.title}">
+            <div class="form__row" :class="{ 'form__row--error': $v.eventForm.title.$error }">
                 <label for="title">Title:</label>
 
                 <input
@@ -23,7 +23,12 @@
                     placeholder="Add an event title"
                     autocomplete="off"
                     v-model="eventForm.title"
+                    @blur="$v.eventForm.title.$touch()"
                 />
+
+                <template v-if="$v.eventForm.title.$error">
+                    <p v-if="!$v.eventForm.title.required" class="h-text-secondary h-color-red">Title is required</p>
+                </template>
             </div>
 
             <div class="form__row">
@@ -47,14 +52,19 @@
                 />
             </div>
 
-            <div class="form__row" :class="{'form__row--error': submitted && !eventForm.date}">
+            <div class="form__row" :class="{ 'form__row--error': $v.eventForm.date.$error }">
                 <label for="date">Date:</label>
 
                 <datepicker
                     id="date"
                     placeholder="Select a date"
                     v-model="eventForm.date"
+                    @opened="$v.eventForm.date.$touch()"
                 ></datepicker>
+
+                <template v-if="$v.eventForm.date.$error">
+                    <p v-if="!$v.eventForm.date.required" class="h-text-secondary h-color-red">Date is required</p>
+                </template>
             </div>
 
             <div class="form__row" v-if="hours.length">
@@ -68,7 +78,11 @@
             </div>
 
             <div>
-                <button class="btn btn--action" :disabled="!eventForm.title">Add event</button>
+                <button :disabled="$v.$invalid" class="btn btn--action">Add event</button>
+
+                <p v-if="$v.$anyError" class="h-text-secondary h-color-red">
+                    Please fill out the required fields (title and date)
+                </p>
             </div>
         </form>
 
@@ -94,14 +108,21 @@
     import { mapState/* , mapGetters */ } from 'vuex'
     import Datepicker from 'vuejs-datepicker'
     import nprogress from 'nprogress'
+    import { required } from 'vuelidate/lib/validators'
+
 
     import { EventBus } from '@/event-bus'
 
     export default {
         data() {
             return {
-                eventForm: this.getInitialEventFormData(),
-                submitted: false
+                eventForm: this.getInitialEventFormData()
+            }
+        },
+        validations: {
+            eventForm: {
+                title: { required },
+                date: { required }
             }
         },
         computed: {
@@ -142,35 +163,37 @@
                     description: '',
                     location: '',
                     date: Date.now(),
-                    time: null
+                    time: ''
                 }
             },
             submit() {
-                console.log('eventForm', this.eventForm);
+                this.$v.$touch();
 
-                this.submitted = true;
-
-                if (this.eventForm.title && this.eventForm.date) {
-                    nprogress.start();
-
-                    this.$store.dispatch('events/addEvent', this.eventForm)
-                        .then(() =>
-                            this.$router.push({
-                                name: 'event',
-                                params: {
-                                    id: this.eventForm.id
-                                }
-                            })
-                        )
-                        .catch(() => {
-                            nprogress.start();
-
-                            EventBus.$emit('add-notification', {
-                                type: 'error',
-                                text: 'There was a problem creating your event'
-                            });
-                        })
+                if (this.$v.$invalid) {
+                    return false;
                 }
+
+                // console.log('eventForm', this.eventForm);
+
+                nprogress.start();
+
+                this.$store.dispatch('events/addEvent', this.eventForm)
+                    .then(() =>
+                        this.$router.push({
+                            name: 'event',
+                            params: {
+                                id: this.eventForm.id
+                            }
+                        })
+                    )
+                    .catch(() => {
+                        nprogress.start();
+
+                        EventBus.$emit('add-notification', {
+                            type: 'error',
+                            text: 'There was a problem creating your event'
+                        });
+                    })
             }
         },
         components: {
