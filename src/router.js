@@ -4,7 +4,8 @@ import nprogress from 'nprogress'
 
 import NetworkIssue from './views/NetworkIssue'
 import NotFound from './views/404'
-import { EVENTS_ROUTES } from './views/events/router';
+import { EVENTS_ROUTES } from './views/events/router'
+import Example from './views/Example'
 
 Vue.use(Router);
 
@@ -36,6 +37,10 @@ const router = new Router({
             component: NetworkIssue
         },
         EVENTS_ROUTES,
+        {
+            path: '/example',
+            component: Example
+        },
         {
             path: '*',
             redirect: {

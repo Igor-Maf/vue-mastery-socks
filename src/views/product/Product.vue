@@ -1,5 +1,7 @@
 <template>
     <div class="content">
+        <BaseButton @click="addToCart" buttonClass="btn--action">Test base button</BaseButton>
+
         <section class="product">
             <section class="product__content">
                 <section class="product__image">
