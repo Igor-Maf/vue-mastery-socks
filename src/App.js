@@ -8,11 +8,11 @@ export default {
             cart: 0
         }
     },
-    watch: {
+    /* watch: {
         '$route'() {
             EventBus.$emit('delete-notifications');
         }
-    },
+    }, */
     methods: {
         addToCart() {
             this.cart += 1;

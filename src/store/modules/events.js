@@ -65,12 +65,13 @@ export const actions = {
 
                     return response.data; // only for example when event data send as prop
                 })
-                .catch(error => {
-                    EventBus.$emit('add-notification', {
-                        type: 'error',
-                        text: error.response.status + ': ' + error.response.statusText
-                    })
-                })
+                // removed catch here because it's handle in router hook
+                // .catch(error => {
+                //     EventBus.$emit('add-notification', {
+                //         type: 'error',
+                //         text: error.response.status + ': ' + error.response.statusText
+                //     })
+                // })
         }
     }
 };

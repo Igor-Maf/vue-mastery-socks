@@ -1,7 +1,7 @@
-import Events from './Events';
-import EventsList from './views/EventsList';
-import Event from './views/Event';
-import EventForm from './views/EventForm';
+import Events from './Events'
+import EventsList from './views/EventsList'
+import Event from './views/Event'
+import EventForm from './views/EventForm'
 
 import store from '@/store/store'
 
@@ -35,6 +35,18 @@ export const EVENTS_ROUTES = {
                     .then(event => {
                         routeTo.params.event = event;
                         next();
+                    })
+                    .catch(error => {
+                        if (error.response && error.response.status == 404) {
+                            next({
+                                name: '404',
+                                params: {
+                                    resource: 'event'
+                                }
+                            })
+                        } else {
+                            next({ name: 'network-issue' })
+                        }
                     })
             }
         }
