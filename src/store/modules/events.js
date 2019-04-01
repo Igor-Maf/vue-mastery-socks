@@ -1,4 +1,4 @@
-import { EventBus } from '@/event-bus';
+// import { EventBus } from '@/event-bus';
 import EventsService from '@/services/EventsService'
 
 export const namespaced = true;
@@ -43,12 +43,12 @@ export const actions = {
                 commit('SET_TOTAL', +response.headers['x-total-count']);
                 commit('SET_EVENTS', response.data);
             })
-            .catch(error => { // TODO: Create middleware for errors
-                EventBus.$emit('add-notification', {
-                    type: 'error',
-                    text: error.response.status + ': ' + error.response.statusText
-                })
-            })
+            // .catch(error => { // TODO: Create middleware for errors
+            //     EventBus.$emit('add-notification', {
+            //         type: 'error',
+            //         text: error.response.status + ': ' + error.response.statusText
+            //     })
+            // })
     },
 
     fetchEvent({ commit, getters }, id) {

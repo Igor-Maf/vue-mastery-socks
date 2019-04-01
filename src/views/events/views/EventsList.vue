@@ -78,6 +78,18 @@
                 routeTo.params.page = currentPage;
                 next();
             })
+            .catch(error => {
+                if (error.response && error.response.status == 404) {
+                    next({
+                        name: '404',
+                        params: {
+                            resource: 'events'
+                        }
+                    })
+                } else {
+                    next({ name: 'network-issue' })
+                }
+            })
     }
 
     export default {
