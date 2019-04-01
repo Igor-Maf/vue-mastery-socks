@@ -38,7 +38,7 @@ export const actions = {
     },
 
     fetchEvents({ commit, rootState }, pageNumber) {
-        EventsService.getEvents(rootState.perPage, pageNumber)
+        return EventsService.getEvents(rootState.perPage, pageNumber)
             .then(response => {
                 commit('SET_TOTAL', +response.headers['x-total-count']);
                 commit('SET_EVENTS', response.data);
@@ -54,16 +54,24 @@ export const actions = {
     fetchEvent({ commit, getters }, id) {
         let event = getters.getEventByID(id);
 
-        event
-            ? commit('SET_EVENT', event)
-            : EventsService.getEvent(id)
-                .then(response => commit('SET_EVENT', response.data))
+        if (event) {
+            commit('SET_EVENT', event);
+
+            return event; // only for example when event data send as prop
+        } else {
+            return EventsService.getEvent(id)
+                .then(response => {
+                    commit('SET_EVENT', response.data);
+
+                    return response.data; // only for example when event data send as prop
+                })
                 .catch(error => {
                     EventBus.$emit('add-notification', {
                         type: 'error',
                         text: error.response.status + ': ' + error.response.statusText
                     })
                 })
+        }
     }
 };
 

@@ -93,6 +93,7 @@
 <script>
     import { mapState/* , mapGetters */ } from 'vuex'
     import Datepicker from 'vuejs-datepicker'
+    import nprogress from 'nprogress'
 
     import { EventBus } from '@/event-bus'
 
@@ -150,6 +151,8 @@
                 this.submitted = true;
 
                 if (this.eventForm.title && this.eventForm.date) {
+                    nprogress.start();
+
                     this.$store.dispatch('events/addEvent', this.eventForm)
                         .then(() =>
                             this.$router.push({
@@ -160,10 +163,12 @@
                             })
                         )
                         .catch(() => {
+                            nprogress.start();
+
                             EventBus.$emit('add-notification', {
                                 type: 'error',
                                 text: 'There was a problem creating your event'
-                            })
+                            });
                         })
                 }
             }

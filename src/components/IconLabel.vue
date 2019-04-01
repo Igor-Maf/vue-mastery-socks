@@ -30,7 +30,9 @@
 <script>
     export default {
         props: {
-            inverse: false
+            inverse: {
+                default: false
+            }
         }
     }
 </script>

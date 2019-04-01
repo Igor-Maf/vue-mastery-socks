@@ -13,9 +13,9 @@
         </section>
 
         <div class="navigation">
-            <template v-if="pageNumber !== 1">
+            <template v-if="page !== 1">
                 <router-link
-                    :to="{name: 'events-list', query: {page: pageNumber - 1}}"
+                    :to="{name: 'events-list', query: {page: page - 1}}"
                     class="navigation__link"
                 >
                     <IconLabel>
@@ -25,9 +25,9 @@
                 </router-link>
             </template>
 
-            <template v-if="eventsTotal > pageNumber * perPage">
+            <template v-if="eventsTotal > page * perPage">
                 <router-link
-                    :to="{name: 'events-list', query: {page: pageNumber + 1}}"
+                    :to="{name: 'events-list', query: {page: page + 1}}"
                     class="navigation__link"
                 >
                     <IconLabel inverse="true">
@@ -61,27 +61,53 @@
 </style>
 
 <script>
-    import { mapState, mapActions } from 'vuex'
+    import { mapState/*, mapActions */} from 'vuex'
 
+    import store from '@/store/store'
     import Icon from '@/components/Icon'
     import IconLabel from '@/components/IconLabel'
     import EventCard from './components/EventCard'
 
+    function getPageEvents(routeTo, next) {
+        const currentPage = +routeTo.query.page || 1;
+
+        store.dispatch('events/fetchEvents', {
+            pageNumber: currentPage
+        })
+            .then(() => {
+                routeTo.params.page = currentPage;
+                next();
+            })
+    }
+
     export default {
-        mounted() {
-            this.fetchEvents(this.pageNumber)
+        props: {
+            page: {
+                type: Number,
+                required: true
+            }
         },
+        beforeRouteEnter(routeTo, routeFrom, next) {
+            getPageEvents(routeTo, next);
+        },
+        beforeRouteUpdate(routeTo, routeFrom, next) {
+            getPageEvents(routeTo, next);
+        },
+        // mounted() {
+        //     this.fetchEvents(this.pageNumber)
+        // },
         computed: {
-            pageNumber() {
-                return +this.$route.query.page || 1
-            },
+            // pageNumber() {
+            //     return +this.page || 1
+            //     // return +this.$route.query.page || 1
+            // },
             ...mapState({
                 events: state => state.events.events,
                 eventsTotal: state => state.events.eventsTotal,
                 perPage: state => state.perPage,
             })
         },
-        methods: mapActions('events', ['fetchEvents']),
+        // methods: mapActions('events', ['fetchEvents']),
         components: {
             EventCard,
             Icon,

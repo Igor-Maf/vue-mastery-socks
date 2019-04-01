@@ -37,21 +37,39 @@
             </div>
         </template>
 
-        <p class="h-color-red" v-else>Event with ID #{{ id }} wasn't found.</p>
+        <!-- <p class="h-color-red" v-else>Event with ID #{{ id }} wasn't found.</p> -->
     </div>
 </template>
 
 <script>
-    import { mapState, mapActions } from 'vuex'
+    // import { mapState, mapActions } from 'vuex'
+    // import nprogress from 'nprogress'
+
+    // import store from '@/store/store'
 
     export default {
-        props: ['id'],
-        mounted() {
-            this.fetchEvent(this.id);
-        },
-        computed: mapState({
-            event: state => state.events.event
-        }),
-        methods: mapActions('events', ['fetchEvent'])
+        props: {
+            event: {
+                type: Object,
+                required: true
+            }
+        }
+        // props: ['id'],
+        // beforeRouteEnter(routeTo, routeFrom, next) {
+        //     // nprogress.start();
+        //
+        //     store.dispatch('events/fetchEvent', routeTo.params.id)
+        //         .then(() => {
+        //             // nprogress.done();
+        //             next();
+        //         })
+        // },
+        // mounted() {
+        //     this.fetchEvent(this.id);
+        // },
+        // computed: mapState({
+        //     event: state => state.events.event
+        // }),
+        // methods: mapActions('events', ['fetchEvent'])
     }
 </script>

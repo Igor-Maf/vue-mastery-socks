@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import nprogress from 'nprogress'
 
 import NotFound from './views/404'
 import { EVENTS_ROUTES } from './views/events/router';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -28,4 +29,13 @@ export default new Router({
     },
     EVENTS_ROUTES
   ]
-})
+});
+
+router.beforeEach((routeTo, routeFrom, next) => {
+  nprogress.start();
+  next();
+});
+
+router.afterEach(() => nprogress.done());
+
+export default router;

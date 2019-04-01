@@ -3,6 +3,8 @@ import EventsList from './views/EventsList';
 import Event from './views/Event';
 import EventForm from './views/EventForm';
 
+import store from '@/store/store'
+
 export const EVENTS_ROUTES = {
     path: '/events',
     component: Events,
@@ -16,7 +18,8 @@ export const EVENTS_ROUTES = {
         {
             path: 'list',
             name: 'events-list',
-            component: EventsList
+            component: EventsList,
+            props: true
         },
         {
             path: 'create',
@@ -26,7 +29,14 @@ export const EVENTS_ROUTES = {
             path: ':id',
             name: 'event',
             component: Event,
-            props: true
+            props: true,
+            beforeEnter(routeTo, routeFrom, next) {
+                store.dispatch('events/fetchEvent', routeTo.params.id)
+                    .then(event => {
+                        routeTo.params.event = event;
+                        next();
+                    })
+            }
         }
     ]
 };

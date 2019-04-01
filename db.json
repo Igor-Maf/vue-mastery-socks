@@ -113,6 +113,21 @@
       "location": "Las Vegas",
       "date": 1553862361715,
       "time": "0:00"
+    },
+    {
+      "id": 663472,
+      "category": "nature",
+      "title": "Test",
+      "description": "Test",
+      "location": "Test",
+      "date": "2019-04-18T09:43:00.000Z",
+      "time": "17:00",
+      "user": {
+        "id": 1,
+        "name": "Ihor Gevorkyan",
+        "role": "admin",
+        "creator": false
+      }
     }
   ]
 }
