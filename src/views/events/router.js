@@ -5,6 +5,7 @@ import EventForm from './views/EventForm'
 
 import store from '@/store/store'
 
+// TODO: Refactor it like here https://stackoverflow.com/questions/45370112/vue-js-separate-routes-in-different-files (2 answer)
 export const EVENTS_ROUTES = {
     path: '/events',
     component: Events,
